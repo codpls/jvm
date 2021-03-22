@@ -1,0 +1,19 @@
+
+
+
+
+.val {
+    font-size: 16px;
+    text-align: center;
+}
+
+.title {
+    width: 30px;
+    font-size: 18px;
+}
+
+.caption {
+    width: 60px;
+    font-size: 18px;
+    padding: 0 5px;
+}
