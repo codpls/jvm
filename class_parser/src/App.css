@@ -5,4 +5,7 @@
   min-height: 100vh;
   margin: 0;
   padding: 16px;
+  display: flex;
+  flex-direction: row;
+  gap: 50px;
 }

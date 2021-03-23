@@ -24,6 +24,12 @@ export const ClassViewer = ({data}: {data: Uint8Array}) => {
             <p>minor version: {classModel.minorVersion}</p>
             <p>major version: {classModel.majorVersion}</p>
             <p>constants: {classModel.constantCount}</p>
+            {
+              classModel.constants.map((c, i) => (
+                <p style={{margin: 0, textAlign: 'left'}}>{i+1}: {JSON.stringify(c)}</p>
+              ))
+            }
+            <p>access flags: {classModel.accessFlag.toString(2).padStart(16, '0')} - {classModel.accessFlagArr.join(', ')}</p>
           </>
         )
       }

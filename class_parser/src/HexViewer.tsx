@@ -3,6 +3,7 @@ import styles from './HexViewer.module.css';
 
 const numToHex = (num: number) => num.toString(16).toUpperCase();
 
+
 export const HexViewer = ({
   data,
 }: {
