@@ -349,10 +349,55 @@ export class ClassParser{
         this.accessFlag = uint8ArrToUint16(this.data, this.index);
         this.index += 2;
     }
-    processThisClass() {}
-    processSuperClass() {}
-    processInterface() {}
-    processField() {}
+    thisClass: number = 0;
+    processThisClass() {
+        this.thisClass = uint8ArrToUint16(this.data, this.index);
+        this.index += 2;
+    }
+    superClass: number = 0;
+    processSuperClass() {
+        this.superClass = uint8ArrToUint16(this.data, this.index);
+        this.index += 2;
+    }
+    interfaceCount: number = 0;
+    interfaces: number[] = [];
+    processInterface() {
+        this.interfaceCount = uint8ArrToUint16(this.data, this.index);
+        this.index += 2;
+        for (let i = 0; i < this.interfaceCount; ++i) {
+            this.interfaces.push(uint8ArrToUint16(this.data, this.index));
+            this.index += 2;
+        }
+    }
+    fieldCount: number = 0;
+    fields: {}[] = [];
+    processField() {
+        this.fieldCount = uint8ArrToUint16(this.data, this.index);
+        this.index += 2;
+        for (let i = 0; i < this.fieldCount; ++i) {
+            this.fields.push(this.processFieldItem());
+        }
+    }
+    processFieldItem() {
+        const accessFlag = uint8ArrToUint16(this.data, this.index);
+        this.index += 2;
+        const nameIndex = uint8ArrToUint16(this.data, this.index);
+        this.index += 2;
+        const descriptorIndex = uint8ArrToUint16(this.data, this.index);
+        this.index += 2;
+        const attributeCount = uint8ArrToUint16(this.data, this.index);
+        this.index += 2;
+        const attributes: {}[] = [];
+        for (let i = 0; i < attributeCount; ++i) {
+            // attributes.push(this.processFieldItem());
+        }
+        return {
+            accessFlag,
+            nameIndex,
+            descriptorIndex,
+            attributeCount,
+        };
+    }
     processMethod() {}
     processAttribute() {}
 
